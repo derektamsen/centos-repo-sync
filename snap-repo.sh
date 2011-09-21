@@ -3,9 +3,9 @@
 # Grabs command line parameters for linking files
 for i in $*
 do
-	case $i in
-    	--repo=* || -r=*)
-    	# Which repo do you want to edit? Usually base, updates, extras, etc
+    case $i in
+	    --repo=* || -r=*)
+	    # Which repo do you want to edit? Usually base, updates, extras, etc
 		REPO=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
 		;;
 		--source=* || -s=*)

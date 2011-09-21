@@ -1,0 +1,18 @@
+The centos repo sync scripts can be used to aid in setting up your own local repo.
+
+The main goal of these scripts are to help in creating branches from trunk. This is where
+you can freeze a set of tested/vetted patches that you want distributed to users. It also
+allows for configuration of patch/update lists for specific environments. For example you
+can have different branches for db servers, app servers, web servers, etc. As well as
+testing, dev, staging, and prod copies of the trunk branch. All of these branches do
+not consume extra disk space because they are using hard links back to the original trunk
+source.
+
+./snap-repo.sh
+- Use this script to make testing/staging/production branches of the trunk repo.
+- Script uses hard links to reduce the disk usage to have multiple branches of a repo.
+
+./update-centos-6.0-trunk.sh
+- Downloads the latest os and updates via rsync from a public centos mirror. These are
+  synced to trunk. You can reference trunk as the source directly in your yum repo client config
+  or setup testing branches to test updates before pushing them to your users.

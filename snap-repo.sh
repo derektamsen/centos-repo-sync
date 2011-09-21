@@ -4,23 +4,23 @@
 for i in $*
 do
     case $i in
-	    --repo=* || -r=*)
-	    # Which repo do you want to edit? Usually base, updates, extras, etc
-		REPO=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
-		;;
-		--source=* || -s=*)
-		# What source do you want to use as your snapshot? (trunk, staging, prod)
-		SRC=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
-		;;
-		# What is the destination? (trunk, staging, prod)
-		--destination=* || -d=*)
-		DEST=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
-		;;
-    	*)
-    	# unknown option
-    	echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
-		;;
-  	esac
+        --repo=* || -r=*)
+        # Which repo do you want to edit? Usually base, updates, extras, etc
+        REPO=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+        ;;
+        --source=* || -s=*)
+        # What source do you want to use as your snapshot? (trunk, staging, prod)
+        SRC=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+        ;;
+        # What is the destination? (trunk, staging, prod)
+        --destination=* || -d=*)
+        DEST=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+        ;;
+        *)
+        # unknown option
+        echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
+        ;;
+    esac
 done
 
 # Define some version and os info so we can later construct the path

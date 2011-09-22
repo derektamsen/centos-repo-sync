@@ -43,21 +43,21 @@ if [[ $# -gt 0 ]]; then
     # Generates the linked repo to create snapshoted branches
     # cleans the current destination repo so we have a clean place
     echo "Cleaning $LOCALREPOPATH/$REPO-$DEST/ to prep for linking"
-    rm -rf "$LOCALREPOPATH/$REPO-$DEST/*"
+    rm -rf $LOCALREPOPATH/$REPO-$DEST/*
 
     # creates hard links from source repo to destination repo. Saves space as well so you can have a lot of branches
     echo "creating snapshot of $LOCALREPOPATH/$REPO-$SRC/* to $LOCALREPOPATH/$REPO-$DEST/ with hard links"
-    cp -alvf "$LOCALREPOPATH/$REPO-$SRC/*" "$LOCALREPOPATH/$REPO-$DEST/"
+    cp -alvf $LOCALREPOPATH/$REPO-$SRC/* $LOCALREPOPATH/$REPO-$DEST/
 
     # removes the repomod stuff so we can ensure that does not get overwritten by another branch
     echo "removing links to repomod stuff"
-    rm -rf "$LOCALREPOPATH/$REPO-$DEST/repodata/*"
+    rm -rf $LOCALREPOPATH/$REPO-$DEST/repodata/*
 
     # copyies the repomod stuff so we can hold the db for the linked files.
     echo "copying repomod stuff into $LOCALREPOPATH/$REPO-$DEST/"
-    cp -avf "$LOCALREPOPATH/$REPO-$SRC/repodata" "$LOCALREPOPATH/$REPO-$DEST/"
+    cp -avf $LOCALREPOPATH/$REPO-$SRC/repodata $LOCALREPOPATH/$REPO-$DEST/
 
-    echo "snapshoting $REPO-$SRC to $REPO-$DEST completed"
+    echo "snapshot of $REPO-$SRC to $REPO-$DEST completed"
 
 else
     echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"

@@ -31,6 +31,7 @@ if [[ $# -gt 0 ]]; then
             # What is the Major OS Version? (4, 5, 6)
             --osreleasever=* | -e=*)
             MAJORVER=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+            ;;
             # What is the Architecture? (i386, x86_64)
             --arch=* | -a=*)
             ARCH=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
@@ -41,7 +42,6 @@ if [[ $# -gt 0 ]]; then
             ;;
             *)
             # unknown option
-            echo "Unknown option! Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
             echo "Unknown option! Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod> [--osreleasever=<5,6> --arch=<i386,x86_64> --os=<centos,rhel>]"
             exit 1
             ;;
@@ -75,6 +75,5 @@ if [[ $# -gt 0 ]]; then
     echo "snapshot of $REPO-$SRC to $REPO-$DEST completed"
 
 else
-    echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
     echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod> [--osreleasever=<5,6> --arch=<i386,x86_64> --os=<centos,rhel>]"
 fi

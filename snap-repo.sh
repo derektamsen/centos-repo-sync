@@ -42,6 +42,7 @@ if [[ $# -gt 0 ]]; then
             *)
             # unknown option
             echo "Unknown option! Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
+            echo "Unknown option! Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod> [--osreleasever=<5,6> --arch=<i386,x86_64> --os=<centos,rhel>]"
             exit 1
             ;;
         esac
@@ -83,4 +84,5 @@ if [[ $# -gt 0 ]]; then
 
 else
     echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod>"
+    echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod> [--osreleasever=<5,6> --arch=<i386,x86_64> --os=<centos,rhel>]"
 fi

@@ -50,29 +50,27 @@ if [[ $# -gt 0 ]]; then
     
     
     # Generates the path where packages and repo files get stored using os, version, and architecture.
-    LOCALREPOPATH="$BASEPATH/$OS/$MAJORVER.$MINORVER/$ARCH"
-
-
-
-    echo "Starting snapshot of $REPO-$SRC to $REPO-$DEST"
+    LOCALREPOPATH="$BASEPATH"
+    
+    echo "Starting snapshot of $REPO-$SRC to $REPO-$DEST for $OS version $MAJORVER $ARCH"
     # Generates the linked repo to create snapshoted branches
     # cleans the current destination repo so we have a clean place
-    echo "Cleaning $LOCALREPOPATH/$REPO-$DEST/ to prep for linking"
-    rm -rf $LOCALREPOPATH/$REPO-$DEST/*
+    echo "Cleaning $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH to prep for linking"
+    rm -rf $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/*
 
     # creates hard links from source repo to destination repo. Saves space as well so you can have a lot of branches
-    echo "creating snapshot of $LOCALREPOPATH/$REPO-$SRC/* to $LOCALREPOPATH/$REPO-$DEST/ with hard links"
-    cp -alvf $LOCALREPOPATH/$REPO-$SRC/* $LOCALREPOPATH/$REPO-$DEST/
+    echo "creating snapshot of $LOCALREPOPATH/$REPO-$SRC/$OS/$MAJORVER/$ARCH/* to $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/ with hard links"
+    cp -alvf $LOCALREPOPATH/$REPO-$SRC/$OS/$MAJORVER/$ARCH/* $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/
 
     # removes the repomod stuff so we can ensure that does not get overwritten by another branch
     echo "removing links to repomod stuff"
-    rm -rf $LOCALREPOPATH/$REPO-$DEST/repodata/*
+    rm -rf $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/repodata/*
 
-    # copyies the repomod stuff so we can hold the db for the linked files.
-    echo "copying repomod stuff into $LOCALREPOPATH/$REPO-$DEST/"
-    cp -avf $LOCALREPOPATH/$REPO-$SRC/repodata $LOCALREPOPATH/$REPO-$DEST/
+    # copies the repomod stuff so we can hold the db for the linked files.
+    echo "copying repomod stuff into $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/"
+    cp -avf $LOCALREPOPATH/$REPO-$SRC/$OS/$MAJORVER/$ARCH/repodata $LOCALREPOPATH/$REPO-$DEST/$OS/$MAJORVER/$ARCH/
 
-    echo "snapshot of $REPO-$SRC to $REPO-$DEST completed"
+    echo "snapshot of $REPO-$SRC to $REPO-$DEST for $OS version $MAJORVER $ARCH completed"
 
 else
     echo "Please specify: $0 --repo=<base,updates,extras> --source=<trunk,stage,prod> --destination=<trunk,stage,prod> [--osreleasever=<5,6> --arch=<i386,x86_64> --os=<centos,rhel>]"

@@ -48,15 +48,7 @@ if [[ $# -gt 0 ]]; then
         esac
     done
     
-    # Define some version and os info so we can later construct the path
-    OS="centos"
-    MAJORVER="6"
-    MINORVER="0"
-    ARCH="x86_64"
-
-    # Base path to where you are storing the repo. Typically this is an http site.
-    BASEPATH="/var/www/html/repo"
-
+    
     # Generates the path where packages and repo files get stored using os, version, and architecture.
     LOCALREPOPATH="$BASEPATH/$OS/$MAJORVER.$MINORVER/$ARCH"
 

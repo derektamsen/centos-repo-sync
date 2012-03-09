@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ $# -gt 0 ]]; then
+    
     # Define some version and os info so we can later construct the path
     # Defaults can be overridden by cli
     OS="centos"
@@ -26,6 +27,17 @@ if [[ $# -gt 0 ]]; then
             # What is the destination? (trunk, staging, prod)
             --destination=* | -d=*)
             DEST=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+            ;;
+            # What is the Major OS Version? (4, 5, 6)
+            --osreleasever=* | -e=*)
+            MAJORVER=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+            # What is the Architecture? (i386, x86_64)
+            --arch=* | -a=*)
+            ARCH=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+            ;;
+            # What is the Architecture? (i386, x86_64)
+            --os=* | -o=*)
+            OS=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
             ;;
             *)
             # unknown option

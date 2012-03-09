@@ -1,6 +1,16 @@
 #!/bin/bash
 
 if [[ $# -gt 0 ]]; then
+    # Define some version and os info so we can later construct the path
+    # Defaults can be overridden by cli
+    OS="centos"
+    MAJORVER="5"
+    MINORVER="0"
+    ARCH="x86_64"
+    
+    # Base path to where you are storing the repo. Typically this is an http site.
+    BASEPATH="/var/www/html/repo"
+    
     # Grabs command line parameters for linking files
     for i in "$@"
     do
